@@ -25,6 +25,6 @@ executable minimal-foreign-export
   build-depends:       base >=4.12 && <4.13
                        , time
   default-language:    Haskell2010
-  ghc-options: -Wall -fwarn-tabs -O -no-hs-main
+  ghc-options: -Wall -fwarn-tabs -O -no-hs-main -debug -with-rtsopts="-DS -DG"
 
      -- -optl -Wl,--export,hsExportedFun 

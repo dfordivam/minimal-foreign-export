@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "HsFFI.h"
 #include <unistd.h>
+#include "Rts.h"
 
 extern void hsSomeExportedApi(int);
 
@@ -10,7 +11,9 @@ HsBool haskell_init(void){
   char *argv[] = { NULL };
   char **pargv = argv;
 
-  hs_init(&argc, &pargv);
+  RtsConfig conf = defaultRtsConfig;
+  conf.rts_opts = "-DS -DG";
+  hs_init_ghc(&argc, &pargv, conf);
 
   return HS_BOOL_TRUE;
 }

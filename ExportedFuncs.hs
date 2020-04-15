@@ -8,5 +8,10 @@ foreign export ccall hsSomeExportedApi :: Int -> IO ()
 
 hsSomeExportedApi :: Int -> IO ()
 hsSomeExportedApi n = do
-  putStrLn $ "Got: " <> show n
-  print =<< getCurrentTime
+  let
+    loop = do
+      putStrLn $ "Got: " <> show n
+      print =<< getCurrentTime
+      -- Uncommenting the following code fixes the issue
+      -- if (n < 0) then loop else pure ()
+  loop
